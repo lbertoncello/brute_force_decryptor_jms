@@ -257,8 +257,7 @@ public class SlaveImpl implements Slave {
 				Message m = subAttackConsumer.receive();
 				if (m instanceof TextMessage) {
 					JsonReader jreader = readerFactory.createReader(new StringReader(((TextMessage) m).getText()));
-					JsonArray jarray = jreader.readArray();
-					JsonObject jobj = jarray.get(0).asJsonObject();
+					JsonObject jobj = jreader.readObject();
 
 					int initialwordindex = Integer.parseInt(jobj.getString("initialwordindex"));
 					int finalwordindex = Integer.parseInt(jobj.getString("finalwordindex"));

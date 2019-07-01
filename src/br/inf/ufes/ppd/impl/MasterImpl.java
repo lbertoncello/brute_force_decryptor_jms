@@ -144,16 +144,15 @@ public class MasterImpl implements Master {
 				finalwordindex = dictionary.size() - 1;
 			}
 
-			JsonArray jarray = jBuilderFactory.createArrayBuilder()
-					.add(jBuilderFactory.createObjectBuilder()
-							.add("initialwordindex", Integer.toString(initialwordindex))
-							.add("finalwordindex", Integer.toString(finalwordindex))
-							.add("ciphertext", cipherTextBase64Encoded)
-							.add("knowntext", knownTextBase64Encoded)
-							.add("attackNumber", Integer.toString(attackNumber)))
+			JsonObject jBuiltObj = jBuilderFactory.createObjectBuilder()
+					.add("initialwordindex", Integer.toString(initialwordindex))
+					.add("finalwordindex", Integer.toString(finalwordindex))
+					.add("ciphertext", cipherTextBase64Encoded)
+					.add("knowntext", knownTextBase64Encoded)
+					.add("attackNumber", Integer.toString(attackNumber))
 					.build();
 
-			String content = jarray.toString();
+			String content = jBuiltObj.toString();
 			TextMessage textMessage = context.createTextMessage();
 			try {
 				textMessage.setText(content);
